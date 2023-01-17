@@ -1,12 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import 'semantic-ui-css/semantic.min.css';
 import App from './app/layout/App';
 import './app/layout/styles.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+// import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
+// const router = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: <
+//   }
+// ]);
+
 function render() {
-  root.render(<App />);
+  root.render(
+    <Router>
+      <App />
+    </Router>
+  );
 }
 
 if (module.hot) {
