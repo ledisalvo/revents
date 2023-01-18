@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import NavBar from '../../features/nav/NavBar';
 import { Container } from 'semantic-ui-react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import EventDashboard from '../../features/events/eventDashboard/EventDashboard';
 import EventDetailedPage from '../../features/events/eventDetailed/EventDetailedPage';
 import EventForm from '../../features/events/eventForm/EventForm';
@@ -19,6 +19,9 @@ const App = () => {
     setSelectedEvent(null);
     setFormOpen(true);
   }
+
+  const navigate = useNavigate();
+  console.log('navigate: ' + navigate('/'));
 
   return (
     <>
