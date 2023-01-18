@@ -1,10 +1,15 @@
 import React from 'react';
 import { Button, Menu } from 'semantic-ui-react';
 
-const SignedOutMenu = () => {
+const SignedOutMenu = ({ setAuthenticated }) => {
   return (
     <Menu.Item position='right'>
-      <Button basic inverted content='Login' />
+      <Button
+        onClick={() => setAuthenticated(true)}
+        basic
+        inverted
+        content='Login'
+      />
       <Button
         basic
         inverted
