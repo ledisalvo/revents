@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import EventDashboard from '../../features/events/eventDashboard/EventDashboard';
 import EventDetailedPage from '../../features/events/eventDetailed/EventDetailedPage';
 import EventForm from '../../features/events/eventForm/EventForm';
+import SandBox from '../../features/sandbox/Sandbox';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Container className='main'>
         <Routes>
           <Route path='/events' element={<EventDashboard />} />
+          <Route path='/sandbox' element={<SandBox />} />
           <Route path='/events/:id' element={<EventDetailedPage />} />
           <Route
             // path={['/createEvent', '/manage/:id']}
