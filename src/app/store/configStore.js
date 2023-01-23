@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import testReducer from '../../features/sandbox/testReducer';
+import { devToolsEnhancer } from 'redux-devtools-extension';
+import rootReducer from './rootReducer';
 
 const configStore = () => {
   return configureStore({
-    reducer: testReducer,
+    reducer: rootReducer,
+    devTools: devToolsEnhancer,
   });
 };
 
