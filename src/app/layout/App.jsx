@@ -16,11 +16,8 @@ const App = () => {
           <Route path='/events' element={<EventDashboard />} />
           <Route path='/sandbox' element={<SandBox />} />
           <Route path='/events/:id' element={<EventDetailedPage />} />
-          <Route
-            // path={['/createEvent', '/manage/:id']}
-            path='/createEvent'
-            element={<EventForm />}
-          />
+          <Route path='/createEvent' element={<EventForm />} />
+          <Route path='/manage/:id' element={<EventForm />} />
         </Routes>
       </Container>
     </>
