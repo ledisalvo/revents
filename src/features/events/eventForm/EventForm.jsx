@@ -1,12 +1,13 @@
 import cuid from 'cuid';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { Button, Form, Header, Segment } from 'semantic-ui-react';
 import { createEvent, updateEvent } from '../eventActions';
 
 const EventForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const selectedEvent = useSelector((state) =>
     state.event.events.find((e) => e.id === id)
@@ -35,6 +36,7 @@ const EventForm = () => {
             hostPhotoURL: '/assets/user.png',
           })
         );
+    navigate('/events');
   }
 
   function handleInputChange(e) {
