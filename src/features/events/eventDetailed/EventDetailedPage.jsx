@@ -4,17 +4,23 @@ import EventDetailedHeader from './EventDetailedHeader';
 import EventDetailedInfo from './EventDetailedInfo';
 import EventDetailedChat from './EventDetailedChat';
 import EventDetailedSideBar from './EventDetailedSideBar';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 const EventDetailedPage = () => {
+  const { id } = useParams();
+  const event = useSelector((state) =>
+    state.event.events.find((e) => e.id === id)
+  );
   return (
     <Grid>
       <Grid.Column width={10}>
-        <EventDetailedHeader />
-        <EventDetailedInfo />
+        <EventDetailedHeader event={event} />
+        <EventDetailedInfo event={event} />
         <EventDetailedChat />
       </Grid.Column>
       <Grid.Column width={6}>
-        <EventDetailedSideBar />
+        <EventDetailedSideBar attendees={event.attendees} />
       </Grid.Column>
     </Grid>
   );
