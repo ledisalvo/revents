@@ -7,8 +7,11 @@ import RouteHandler from './app/layout/RouteHandler';
 import { Provider } from 'react-redux';
 import configStore from './app/store/configStore';
 import 'react-toastify/dist/ReactToastify.min.css';
+import { loadEvents } from './features/events/eventActions';
 
 const store = configStore();
+
+store.dispatch(loadEvents());
 
 const root = createRoot(document.getElementById('root'));
 
