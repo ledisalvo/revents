@@ -6,11 +6,13 @@ import EventDashboard from '../../features/events/eventDashboard/EventDashboard'
 import EventDetailedPage from '../../features/events/eventDetailed/EventDetailedPage';
 import EventForm from '../../features/events/eventForm/EventForm';
 import SandBox from '../../features/sandbox/Sandbox';
+import ModalManager from '../common/modals/ModalManager';
 
 const App = () => {
   const { key } = useLocation();
   return (
     <>
+      <ModalManager />
       <NavBar />
       <Container className='main'>
         <Routes>
