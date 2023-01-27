@@ -2,19 +2,19 @@ const ASYNC_ACTION_START = 'ASYNC_ACTION_START';
 const ASYNC_ACTION_FINISH = 'ASYNC_ACTION_FINISH';
 const ASYNC_ACTION_ERROR = 'ASYNC_ACTION_ERROR';
 
-const asyncActionStart = () => {
+export const asyncActionStart = () => {
   return {
     type: ASYNC_ACTION_START,
   };
 };
 
-const asyncActionFinish = () => {
+export const asyncActionFinish = () => {
   return {
     type: ASYNC_ACTION_FINISH,
   };
 };
 
-const asyncActionError = (error) => {
+export const asyncActionError = (error) => {
   return {
     type: ASYNC_ACTION_ERROR,
     payload: error,

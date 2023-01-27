@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import RouteHandler from './app/layout/RouteHandler';
 import { Provider } from 'react-redux';
 import configStore from './app/store/configStore';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const store = configStore();
 
