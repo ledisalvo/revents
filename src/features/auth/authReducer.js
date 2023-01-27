@@ -1,8 +1,11 @@
 import { SIGN_IN_USER, SIGN_OUT_USER } from './authConstants';
 
 const initialState = {
-  authenticated: false,
-  currentUser: null,
+  authenticated: true,
+  currentUser: {
+    email: 'bob@test.com',
+    photoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
+  },
 };
 
 const authReducer = (state = initialState, { type, payload }) => {
