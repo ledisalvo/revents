@@ -11,7 +11,7 @@ const NavBar = ({ setFormOpen }) => {
   return (
     <Menu inverted fixed='top'>
       <Container>
-        <Menu.Item as={NavLink} exact to='/' header>
+        <Menu.Item as={NavLink} exact='true' to='/' header>
           <img src='/logo192.png' alt='logo' style={{ marginRight: 15 }} />
           Re-vents
         </Menu.Item>

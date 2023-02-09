@@ -19,10 +19,11 @@ const EventDetailedSideBar = ({ attendees }) => {
           {attendees.map((attendee) => (
             <Item key={attendee.id} style={{ position: 'relative' }}>
               <Item.Image
+                key={attendee.id}
                 size='tiny'
                 src={attendee.photoURL || '/assets/user.png'}
               />
-              <Item.Content verticalAlign='middle'>
+              <Item.Content verticalAlign='middle' key={attendee.id}>
                 <Item.Header as='h3'>
                   <span>{attendee.displayName}</span>
                 </Item.Header>

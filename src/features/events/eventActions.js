@@ -4,12 +4,6 @@ import {
   FETCH_EVENTS,
   UPDATE_EVENT,
 } from './eventContanst';
-import {
-  asyncActionError,
-  asyncActionFinish,
-  asyncActionStart,
-} from '../../app/async/asyncReducer';
-import { fetchSampleData } from '../../app/api/mockApi';
 
 export function createEvent(event) {
   return {
@@ -32,15 +26,9 @@ export function deleteEvent(eventId) {
   };
 }
 
-export function loadEvents() {
-  return async function (dispatch) {
-    dispatch(asyncActionStart());
-    try {
-      const events = await fetchSampleData();
-      dispatch({ type: FETCH_EVENTS, payload: events });
-      dispatch(asyncActionFinish());
-    } catch (error) {
-      dispatch(asyncActionError(error));
-    }
+export function listenToEvents(events) {
+  return {
+    type: FETCH_EVENTS,
+    payload: events,
   };
 }
