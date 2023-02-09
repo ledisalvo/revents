@@ -1,9 +1,8 @@
-import cuid from 'cuid';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button, Header, Segment } from 'semantic-ui-react';
-import { createEvent, listenToEvents, updateEvent } from '../eventActions';
+import { listenToEvents } from '../eventActions';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import MyTextInput from '../../../app/common/form/MyTextInput';
@@ -11,7 +10,6 @@ import MyTextArea from '../../../app/common/form/MyTextArea';
 import MySelectInput from '../../../app/common/form/MySelectInput';
 import { categoryData } from '../../../app/api/categoryOptions';
 import MyDateInput from '../../../app/common/form/MyDateInput';
-import { isDisabled } from '@testing-library/user-event/dist/utils';
 import useFirestoreDoc from '../../../app/hooks/useFirestoreDoc';
 import {
   addEventToFirestore,
