@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Button, Header, Segment } from 'semantic-ui-react';
+import { Button, Confirm, Header, Segment } from 'semantic-ui-react';
 import { listenToEvents } from '../eventActions';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -13,6 +13,7 @@ import MyDateInput from '../../../app/common/form/MyDateInput';
 import useFirestoreDoc from '../../../app/hooks/useFirestoreDoc';
 import {
   addEventToFirestore,
+  cancelEventToggle,
   listenToEventFromFirestore,
   updateEventInFirestore,
 } from '../../../app/firestore/filestoreService';
@@ -21,6 +22,8 @@ import { toast } from 'react-toastify';
 
 const EventForm = () => {
   const dispatch = useDispatch();
+  const [loadingCancel, setLoadingCancel] = useState(false);
+  const [confirmOpen, setConfirmOpen] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const selectedEvent = useSelector((state) =>
@@ -45,6 +48,16 @@ const EventForm = () => {
     venue: Yup.string().required('You must provide a venue'),
     date: Yup.string().required('You must provide a date'),
   });
+
+  async function handleCancelToggle(event) {
+    setConfirmOpen(false);
+    setLoadingCancel(true);
+    try {
+    } catch (error) {
+      setLoadingCancel(false);
+      toast.error(error.message);
+    }
+  }
 
   useFirestoreDoc({
     shouldExecute: !!id,
@@ -100,6 +113,20 @@ const EventForm = () => {
               timeCaption='time'
               dateFormat='MMMM d, yyyy h:mm a'
             />
+            {selectedEvent && (
+              <Button
+                loading={loadingCancel}
+                type='button'
+                floated='left'
+                color={selectedEvent.isCancelled ? 'green' : 'red'}
+                content={
+                  selectedEvent.isCancelled
+                    ? 'Reactivate event'
+                    : 'Cancel Event'
+                }
+                onClick={() => setConfirmOpen(true)}
+              />
+            )}
             <Button
               loading={isSubmitting}
               disabled={!isValid || !dirty || isSubmitting}
@@ -119,6 +146,16 @@ const EventForm = () => {
           </Form>
         )}
       </Formik>
+      <Confirm
+        content={
+          selectedEvent?.isCancelled
+            ? 'This will reactivate the event - are you sure?'
+            : 'This will cancel the event - are you sure?'
+        }
+        open={confirmOpen}
+        onCancel={() => setConfirmOpen(false)}
+        onConfirm={() => handleCancelToggle(selectedEvent)}
+      />
     </Segment>
   );
 };
