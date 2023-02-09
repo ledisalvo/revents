@@ -7,10 +7,11 @@ import {
 } from '../async/asyncReducer';
 import { dataFromSnapshot } from '../firestore/filestoreService';
 
-const useFirestoreDoc = ({ query, data, deps }) => {
+const useFirestoreDoc = ({ query, data, deps, shouldExecute = true }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!shouldExecute) return;
     dispatch(asyncActionStart());
     const unsubscribe = query().onSnapshot(
       (snapshot) => {
